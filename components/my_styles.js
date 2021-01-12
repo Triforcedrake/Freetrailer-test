@@ -12,12 +12,6 @@ export default StyleSheet.create({
         flex: 1,
     },
 
-    contentContainer: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'space-around'
-    },
-
     buttonContainer: {
         flexDirection: 'row',
     },
@@ -44,22 +38,17 @@ export default StyleSheet.create({
         textAlign: "center",
     },
 
-    LanguageText: {
+    languageText: {
         fontSize: 20,
         color: 'black',
         fontWeight: "bold",
         textAlign: "left",
-    },
-
-    LanguageTextButton: {
-        fontSize: 20,
-        color: 'black',
-        fontWeight: "bold",
-        textAlign: "center",
+        paddingLeft: 10,
     },
 
     flag: {
         textAlign: "right",
+        paddingRight: 10, 
     },
   
     standardButton: {
@@ -96,6 +85,7 @@ export default StyleSheet.create({
         marginTop:20,
         paddingTop:10,
         paddingBottom:10,
-    },
-  
-  });
+        borderRadius:10, 
+        borderWidth:2,
+        borderColor: 'transparent'
+  }});

@@ -1,17 +1,17 @@
-import React from 'react';
-import { Text, TouchableOpacity, View, ImageBackground, Modal } from 'react-native';
-import StyleSheet from './components/my_styles';
+import React from "react";
+import { Text, TouchableOpacity, View, ImageBackground, Modal } from "react-native";
+import StyleSheet from "./components/my_styles";
 
-import { Flag } from 'react-native-svg-flagkit'
-import i18n from './components/i18n'; 
+import { Flag } from "react-native-svg-flagkit"
+import i18n from "./components/i18n"; 
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     
-    //Setting up our states
+    //Setting up our states for the modal and the language highligt
     this.state = { 
-        selectedButton: 'dk', 
+        selectedButton: "dk", 
         modalVisible: false,
     };
     
@@ -31,26 +31,29 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={StyleSheet.container}>
-        <ImageBackground source={require('./assets/img/background.jpg')} style={StyleSheet.background}>
+        <ImageBackground source={require("./assets/img/background.jpg")} style={StyleSheet.background}>
+            <View style={StyleSheet.flex2}>
+              <Text style={StyleSheet.title}>
+                {i18n.t("title")}
+              </Text>
+            </View>
 
-          <Text style={StyleSheet.title}>
-            {i18n.t('title')}
-          </Text>
+            <View style={StyleSheet.flex1}>
+              <TouchableOpacity style={StyleSheet.standardButton}>
+                <Text style={StyleSheet.text}>{i18n.t("start")}</Text>
+              </TouchableOpacity>
 
-          <TouchableOpacity style={StyleSheet.standardButton}>
-            <Text style={StyleSheet.text}>{i18n.t('start')}</Text>
-          </TouchableOpacity>
+              <TouchableOpacity style={[StyleSheet.standardButton, StyleSheet.buttonBorder]}>
+                <Text style={StyleSheet.text}>{i18n.t("find")}</Text>
+              </TouchableOpacity>
 
-          <TouchableOpacity style={StyleSheet.transparentButton}>
-            <Text style={StyleSheet.text}>{i18n.t('find')}</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={StyleSheet.languageButton} onPress={() => {
-              this.setModalVisible(true);
-            }}>
-            <Text style={StyleSheet.text}>{i18n.t('languageBase')}</Text>
-            <Text style={StyleSheet.flag}> <Flag id={i18n.t('flagID')} size={0.15}/></Text> 
-          </TouchableOpacity>
+              <TouchableOpacity style={StyleSheet.languageMenu} onPress={() => {
+                  this.setModalVisible(true);
+                }}>
+                <Text style={StyleSheet.text}>{i18n.t("languageBase")} </Text>
+                <Text style={StyleSheet.flag}><Flag id={i18n.t("flagID")} size={0.15}/> </Text>
+              </TouchableOpacity>
+            </View>
         </ImageBackground>
 
         {/*The slide up menu setup*/}
@@ -58,53 +61,57 @@ export default class App extends React.Component {
           animationType="slide"
           visible={this.state.modalVisible}
           >
-          <View style={{marginTop: 60}}>
+          <View style={StyleSheet.container}>
             <View>
+    
               <Text style={StyleSheet.languageTitle}>
-                {i18n.t('choose')}
+                {i18n.t("choose")}
               </Text>
 
-                {/*The buttons within the slide up will close the slide up and set the new language with i18n*/}
-              <TouchableOpacity style={[StyleSheet.languageButton, {borderColor: this.state.selectedButton === "dk" ? 'black' : 'transparent'}]} 
+                {/*The buttons within the slide up will close the modal slide up and set the new language with i18n*/}
+              <TouchableOpacity style={[StyleSheet.languageButton, {borderColor: this.state.selectedButton === "dk" ? "black" : "transparent"}]} 
                 onPress={() => { 
                   this.setModalVisible(!this.state.modalVisible); 
-                  i18n.locale = 'dk';
+                  i18n.locale = "dk";
                   this.selectionOnPress("dk");
                 }}>
-                <Text style={StyleSheet.languageText}>{i18n.t('danish')}</Text> 
-                <Text style={StyleSheet.flag}> <Flag id={'DK'} size={0.15}/></Text> 
+                <Text style={StyleSheet.languageText}>{i18n.t("danish")}</Text> 
+                <Text style={StyleSheet.flag}> <Flag id={"DK"} size={0.15}/></Text> 
               </TouchableOpacity>
 
-              <TouchableOpacity style={StyleSheet.languageButton} onPress={() => {
-                  this.setModalVisible(!this.state.modalVisible);
-                }}>
-                <Text style={StyleSheet.languageText}>{i18n.t('german')}</Text>
-                <Text style={StyleSheet.flag}> <Flag id={'DE'} size={0.15}/></Text> 
-              </TouchableOpacity>
-
-              <TouchableOpacity style={StyleSheet.languageButton} onPress={() => {
-                  this.setModalVisible(!this.state.modalVisible);
-                }}>
-                <Text style={StyleSheet.languageText}>{i18n.t('french')}</Text>
-                <Text style={StyleSheet.flag}> <Flag id={'FR'} size={0.15}/></Text> 
-              </TouchableOpacity>
-
-              <TouchableOpacity style={[StyleSheet.languageButton, {borderColor: this.state.selectedButton === "en" ? 'black' : 'transparent'}]}
-              onPress={() => {
-                  this.setModalVisible(!this.state.modalVisible); 
-                  i18n.locale = 'en';
-                  this.selectionOnPress("en");
-                }}>
-                <Text style={StyleSheet.languageText}>{i18n.t('english')}</Text> 
-                <Text style={StyleSheet.flag}> <Flag id={'GB'} size={0.15}/></Text> 
-              </TouchableOpacity>
-
-              <TouchableOpacity style={StyleSheet.standardButton}
+              <TouchableOpacity style={StyleSheet.languageButton} 
                 onPress={() => {
                   this.setModalVisible(!this.state.modalVisible);
                 }}>
-                <Text style={StyleSheet.languageText,  {textAlign: "center", color: "white"}}>Ok</Text>
+                <Text style={StyleSheet.languageText}>{i18n.t("german")}</Text>
+                <Text style={StyleSheet.flag}> <Flag id={"DE"} size={0.15}/></Text> 
               </TouchableOpacity>
+
+              <TouchableOpacity style={StyleSheet.languageButton} 
+                onPress={() => {
+                  this.setModalVisible(!this.state.modalVisible);
+                }}>
+                <Text style={StyleSheet.languageText}>{i18n.t("french")}</Text>
+                <Text style={StyleSheet.flag}> <Flag id={"FR"} size={0.15}/></Text> 
+              </TouchableOpacity>
+
+              <TouchableOpacity style={[StyleSheet.languageButton, {borderColor: this.state.selectedButton === "en" ? "black" : "transparent"}]}
+                onPress={() => {
+                  this.setModalVisible(!this.state.modalVisible); 
+                  i18n.locale = "en";
+                  this.selectionOnPress("en");
+                }}>
+                <Text style={StyleSheet.languageText}>{i18n.t("english")}</Text> 
+                <Text style={StyleSheet.flag}> <Flag id={"GB"} size={0.15}/></Text> 
+              </TouchableOpacity>
+
+              <TouchableOpacity style={[StyleSheet.standardButton, StyleSheet.topMargin]}
+                onPress={() => {
+                  this.setModalVisible(!this.state.modalVisible);
+                }}>
+                <Text style={StyleSheet.text}>OK</Text>
+              </TouchableOpacity>
+
             </View>
           </View>
         </Modal>

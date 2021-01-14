@@ -1,6 +1,6 @@
-import i18n from 'i18n-js';
-import dk from './languages/dk';  
-import en from './languages/en';
+import i18n from "i18n-js";
+import dk from "./languages/dk";  
+import en from "./languages/en";
 
 //Here we configure i18n before exporting to the main 
 
@@ -11,6 +11,6 @@ i18n.translations = {
   en,
 };
 
-i18n.locale = 'dk';
+i18n.locale = "dk";
 
 export default i18n; 

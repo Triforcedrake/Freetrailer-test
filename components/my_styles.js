@@ -10,7 +10,6 @@ export default StyleSheet.create({
     
     container: {
         flex: 1,
-        justifyContent: "space-around",
     },
 
     flex2: {
@@ -37,6 +36,7 @@ export default StyleSheet.create({
         fontWeight: "bold",
         textAlign: "left",
         marginLeft: 60,
+        marginTop: 100,
         marginBottom: 50, 
     },
   

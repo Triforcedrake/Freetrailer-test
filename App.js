@@ -38,37 +38,31 @@ export default class App extends React.Component {
               </Text>
             </View>
 
-            <View style={StyleSheet.flex1}>
-              <TouchableOpacity style={StyleSheet.standardButton}>
-                <Text style={StyleSheet.text}>{i18n.t("start")}</Text>
-              </TouchableOpacity>
+            <TouchableOpacity style={StyleSheet.standardButton}>
+              <Text style={StyleSheet.text}>{i18n.t("start")}</Text>
+            </TouchableOpacity>
 
-              <TouchableOpacity style={[StyleSheet.standardButton, StyleSheet.buttonBorder]}>
-                <Text style={StyleSheet.text}>{i18n.t("find")}</Text>
-              </TouchableOpacity>
+            <TouchableOpacity style={[StyleSheet.standardButton, StyleSheet.buttonBorder]}>
+              <Text style={StyleSheet.text}>{i18n.t("find")}</Text>
+            </TouchableOpacity>
 
-              <TouchableOpacity style={StyleSheet.languageMenu} onPress={() => {
-                  this.setModalVisible(true);
-                }}>
+            <TouchableOpacity style={StyleSheet.languageMenu} onPress={() => {
+                this.setModalVisible(true);
+              }}>
                 <Text style={StyleSheet.text}>{i18n.t("languageBase")} </Text>
                 <Text style={StyleSheet.flag}><Flag id={i18n.t("flagID")} size={0.15}/> </Text>
-              </TouchableOpacity>
-            </View>
+            </TouchableOpacity>
         </ImageBackground>
 
         {/*The slide up menu setup*/}
-        <Modal
-          animationType="slide"
-          visible={this.state.modalVisible}
-          >
+        <Modal animationType="slide" visible={this.state.modalVisible}>
           <View style={StyleSheet.container}>
-            <View>
     
               <Text style={StyleSheet.languageTitle}>
                 {i18n.t("choose")}
               </Text>
 
-                {/*The buttons within the slide up will close the modal slide up and set the new language with i18n*/}
+              {/*The buttons within the slide up will close the modal slide up and set the new language with i18n*/}
               <TouchableOpacity style={[StyleSheet.languageButton, {borderColor: this.state.selectedButton === "dk" ? "black" : "transparent"}]} 
                 onPress={() => { 
                   this.setModalVisible(!this.state.modalVisible); 
@@ -113,7 +107,6 @@ export default class App extends React.Component {
               </TouchableOpacity>
 
             </View>
-          </View>
         </Modal>
       </View>
       
